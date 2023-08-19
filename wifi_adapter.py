@@ -14,14 +14,17 @@ def scan():
 
 
 def connect(ssid, password):
-    print(pwd.getpwnam('lord'))
+    # print(pwd.getpwnam('lord'))
     # os.system(f'networksetup -setairportnetwork en0 {ssid} {password}')
-    result = subprocess.Popen(['networksetup', '-setairportnetwork en0'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, user='lord')
-    output,errors=result.communicate(input=f'{ssid}, {password}')
-    result.wait()
-    print(f'Connection attempt to {ssid} ran with output: \n {output}')
-    if errors:
-        print(f'There was error {errors}')
+    # result = subprocess.Popen(['sudo', '-S', '992128NJVJuhfabzMAC', 'networksetup', '-setairportnetwork en0'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    # output,errors=result.communicate(input=f'{ssid}, {password}')
+    # result.wait()
+    request = f'sudo -S <<< "pass\n" " networksetup -setairportnetwork en0 {ssid} {password}"'
+    os.system(request)
+    # result = subprocess.run([request])
+    # print(f'Connection attempt to {ssid} ran with output: \n {result}')
+    # if errors:
+    #     print(f'There was error {errors}')
 
 
 
